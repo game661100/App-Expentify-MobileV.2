@@ -5,7 +5,18 @@ import { styled } from 'nativewind';
 
 const StyledCalendar = styled(Calendar);
 
-const CustomCalendar = () => {
+const CustomCalendar = (props) => {
+
+  const PageHandler = () =>
+  {
+    props.onSetPageFunction(1);
+  }
+
+  const DateHandler = (date) =>
+  {
+    props.onSetDateFunction(date);
+  }
+
   // Get today's date in YYYY-MM-DD format
   const today = new Date();
   const formattedToday = today.toISOString().split('T')[0];
@@ -15,6 +26,11 @@ const CustomCalendar = () => {
 
   const onDayPress = (day) => {
     setSelectedDate(day.dateString); // Update selected date
+    if(day.dateString == selectedDate)
+    {
+      PageHandler();
+      DateHandler(Number(selectedDate.split("-")[2])+"-"+ Number(selectedDate.split("-")[1])+"-"+Number(selectedDate.split("-")[0]));
+    }
   };
 
   // Function to get the marked dates for Sundays
@@ -57,11 +73,10 @@ const CustomCalendar = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <StyledCalendar
         onDayPress={onDayPress}
         markingType={'custom'}
-        style={styles.calendar}
         enableSwipeMonths={true} // Enable swipe gesture for changing months
         hideArrows={true} // Hide arrows to remove them completely
         theme={{
@@ -84,13 +99,5 @@ const CustomCalendar = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-  },
-  calendar: {
-    backgroundColor: 'transparent', // Keep the calendar background transparent
-  },
-});
 
 export default CustomCalendar;
