@@ -12,34 +12,33 @@ export default function HomeScreen() {
   const [date, setDate] = useState();
 
   const BackPage = () => {
-    setPage(page-1);
+    setPage(page - 1);
   }
 
   const RenderPage = () => {
-    if(page == 0)
+    if (page == 0)
       return (
         <>
           <View style={styles.navigationContainer}>
-            <View style={{flex:8}}>
+            <View style={{ flex: 8 }}>
               <Text style={styles.textTitle}>Schedule</Text>
             </View>
           </View>
-            <CustomCalendar onSetPageFunction = {setPage} onSetDateFunction = {setDate} />
+          <CustomCalendar onSetPageFunction={setPage} onSetDateFunction={setDate} />
         </>
       );
-    else if(page == 1)
+    else if (page == 1)
       return (
-        <ExpentifyNote date={date} onSetPageFunction = {setPage} BackPage={BackPage}/>
+        <ExpentifyNote date={date} onSetPageFunction={setPage} BackPage={BackPage} />
       );
-    else if(page == 2)
+    else if (page == 2)
       return (
-        <Form onSetPageFunction = {setPage} BackPage={BackPage}/>
+        <Form onSetPageFunction={setPage} BackPage={BackPage} />
       );
     else return null;
   }
 
-  const HomePageHandler = () =>
-  {
+  const HomePageHandler = () => {
     setPage(0);
   }
 
