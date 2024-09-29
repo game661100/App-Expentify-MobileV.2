@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
       position: 'absolute',
       right: 20,
       bottom: 20,
+      paddingHorizontal:16
+    },
+    editButton: {
+      backgroundColor: '#6e47b2',
+      borderRadius: 50,
+      padding: 15,
+      position: 'absolute',
+      left: 20,
+      bottom: 20,
+      paddingHorizontal:16
     },
     navigationButton: {
         alignItems: 'center',
@@ -64,18 +74,21 @@ const styles = StyleSheet.create({
       fontSize: 18,
       textAlignVertical:'center',
       textAlign: 'left',
+      paddingHorizontal:4,
     },
     greenMenuText:{
       color: '#33C201',
       fontSize: 18,
       textAlignVertical:'center',
       textAlign: 'right',
+      paddingHorizontal:4,
     },
     redMenuText:{
       color: '#CC3D3D',
       fontSize: 18,
       textAlignVertical:'center',
       textAlign: 'right',
+      paddingHorizontal:4,
     },
     text:{
         color: '#000',
@@ -85,6 +98,15 @@ const styles = StyleSheet.create({
         paddingVertical:8,
         paddingHorizontal:4,
     },
+    textWithButton:{
+      color: '#000',
+      fontSize: 18,
+      textAlignVertical:'center',
+      textAlign: 'left',
+      paddingVertical:8,
+      paddingHorizontal:4,
+      flex:1
+    },
     inputLeft:{
         color: '#fff',
         fontSize: 16,
@@ -92,7 +114,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         backgroundColor: '#656466',
         marginTop:5,
-        paddingVertical:5,
+        paddingVertical:6,
         paddingHorizontal:20,
         borderRadius:10
     },
@@ -103,7 +125,7 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         backgroundColor: '#656466',
         marginTop:5,
-        paddingVertical:5,
+        paddingVertical:6,
         paddingHorizontal:20,
         borderRadius:10
     }

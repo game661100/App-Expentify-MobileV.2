@@ -77,7 +77,7 @@ const Form = (props) => {
         </TouchableOpacity>
         <View style={{ flex: 8 }}>
           <Text style={styles.textTitle}>เพิ่มรายการ</Text>
-        </View>
+        </View >
         <TouchableOpacity style={styles.navigationButton} onPress={confirmAdding}>
           <Ionicons name="checkmark" size={32} color="white" />
         </TouchableOpacity>
@@ -85,9 +85,9 @@ const Form = (props) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.textBox}>
           <View style={{flexDirection:'row'}}>
-            <Text style={styles.text}>หมวดหมู่</Text>
-            <TouchableOpacity style={{backgroundColor: '#6e47b2',borderRadius: 50,padding: 15}} onPress={addCategoryPage}>
-              <Text style={{}}>เพิ่ม</Text>
+            <Text style={styles.textWithButton}>หมวดหมู่</Text>
+            <TouchableOpacity style={{backgroundColor: '#6e47b2',borderRadius: 10,paddingHorizontal:10}} onPress={addCategoryPage}>
+              <Text style={styles.textWithButton}>เพิ่ม</Text>
             </TouchableOpacity>
           </View>
           <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}

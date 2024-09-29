@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Calendar,loca } from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
 import { styled } from 'nativewind';
 
 const StyledCalendar = styled(Calendar);
@@ -71,6 +71,7 @@ const CustomCalendar = (props) => {
 
     return marked;
   };
+
 
   return (
     <View>
