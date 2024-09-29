@@ -29,7 +29,7 @@ const CustomCalendar = (props) => {
     if(day.dateString == selectedDate)
     {
       PageHandler();
-      DateHandler(Number(selectedDate.split("-")[2])+"-"+ Number(selectedDate.split("-")[1])+"-"+Number(selectedDate.split("-")[0]));
+      DateHandler(selectedDate);
     }
   };
 

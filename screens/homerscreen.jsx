@@ -4,6 +4,7 @@ import GradientBackground from '../components/background'
 import CustomCalendar from '../components/Calendar';
 import ExpentifyNote from '../components/expentifynote';
 import Form from '../components/form';
+import Category from '../components/category';
 import styles from '../styles/styles';
 
 export default function HomeScreen() {
@@ -33,7 +34,11 @@ export default function HomeScreen() {
       );
     else if (page == 2)
       return (
-        <Form onSetPageFunction={setPage} BackPage={BackPage} />
+        <Form date={date} onSetPageFunction={setPage} BackPage={BackPage} />
+      );
+    else if (page == 3)
+      return (
+        <Category onSetPageFunction={setPage} BackPage={BackPage} />
       );
     else return null;
   }

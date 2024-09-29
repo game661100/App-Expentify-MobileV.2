@@ -53,6 +53,30 @@ const styles = StyleSheet.create({
         padding:5,
         marginBottom:10,
     },
+    menuBox: {
+      borderRadius: 10,
+      backgroundColor: "#ccc2fe",
+      padding:5,
+      marginBottom:10,
+    },
+    menuText:{
+      color: '#000',
+      fontSize: 18,
+      textAlignVertical:'center',
+      textAlign: 'left',
+    },
+    greenMenuText:{
+      color: '#33C201',
+      fontSize: 18,
+      textAlignVertical:'center',
+      textAlign: 'right',
+    },
+    redMenuText:{
+      color: '#CC3D3D',
+      fontSize: 18,
+      textAlignVertical:'center',
+      textAlign: 'right',
+    },
     text:{
         color: '#000',
         fontSize: 18,
