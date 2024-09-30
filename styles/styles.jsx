@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
       alignSelf:'center',
       verticalAlign:'center',
       textAlign: 'center',
+      paddingTop:8
     },
     container: {
         flex: 1,
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         alignSelf:'center',
         paddingHorizontal:4,
+        
     },
     textWithButton:{
       color: '#000',
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
       textAlign: 'left',
       alignSelf:'center',
       paddingHorizontal:4,
+      paddingVertical:4,
       flex:1
     },
     inputLeft:{

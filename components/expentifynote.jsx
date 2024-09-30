@@ -59,7 +59,7 @@ const ExpentifyNote = (props) => {
           {data.map((item, index) => (
             <Pressable key={index} onPress={() => toggleExpand(index)}>
               <View style={styles.menuBox}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ flexDirection: 'row'}}>
                   <Text style={styles.textWithButton}>{item.menu}</Text>
                   {item.category_type === 'รายรับ' ? (
                     <Text style={styles.greenMenuText}>{item.money}</Text>

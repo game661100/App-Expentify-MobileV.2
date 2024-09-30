@@ -45,7 +45,7 @@ const Category = (props) => {
       </View>
         <View style={styles.textBox}>
           <View style={{flexDirection:'row'}}>
-            <Text style={styles.text}>ชื่อหมวดหมู่</Text>
+            <Text style={styles.textWithButton}>ชื่อหมวดหมู่</Text>
           </View>
           <TextInput style={styles.inputLeft}
             value={newCategory}
@@ -53,7 +53,7 @@ const Category = (props) => {
         </View>
         <View style={styles.textBox}>
           <View style={{flexDirection:'row'}}>
-            <Text style={styles.text}>ประเภท</Text>
+            <Text style={styles.textWithButton}>ประเภท</Text>
           </View>
           <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
             placeholderStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}

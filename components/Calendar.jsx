@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useState,useEffect } from 'react';
+import { View} from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { styled } from 'nativewind';
+import DailySummary from './dailysummary';
+import moment from 'moment-timezone';
 
 const StyledCalendar = styled(Calendar);
 
@@ -18,14 +20,14 @@ const CustomCalendar = (props) => {
   }
 
   // Get today's date in YYYY-MM-DD format
-  const today = new Date();
-  const formattedToday = today.toISOString().split('T')[0];
-
+  const formattedToday = moment.tz(new Date(), 'Asia/Bangkok').format('YYYY-MM-DD');
+  const today = new Date(formattedToday.split('-')[2],formattedToday.split('-')[1],formattedToday.split('-')[0]);
+  
   // Set default selected date to today
   const [selectedDate, setSelectedDate] = useState(formattedToday);
 
   const onDayPress = (day) => {
-    setSelectedDate(day.dateString); // Update selected date
+    setSelectedDate(day.dateString);
     if(day.dateString == selectedDate)
     {
       PageHandler();
@@ -72,9 +74,9 @@ const CustomCalendar = (props) => {
     return marked;
   };
 
-
   return (
-    <View>
+    <>
+    <View style={{borderWidth:2,borderColor:"#fff"}}>
       <StyledCalendar
         onDayPress={onDayPress}
         markingType={'custom'}
@@ -83,7 +85,8 @@ const CustomCalendar = (props) => {
         theme={{
           calendarBackground: 'transparent',
           textSectionTitleColor: '#ffffff',
-          todayTextColor: '#ffffff',
+          todayTextColor: '#000000',
+          todayBackgroundColor: '#ccc2fe',
           dayTextColor: '#ffffff',
           textDisabledColor: '#7E7E7E',
           dotColor: '#ffffff',
@@ -98,6 +101,8 @@ const CustomCalendar = (props) => {
         markedDates={getMarkedDates()} // Use the marked dates function
       />
     </View>
+    <DailySummary date={selectedDate}/>
+    </>
   );
 };
 
