@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,24 +33,28 @@ const Category = (props) => {
   return (
     <>
       <View style={styles.navigationContainer}>
-        <TouchableOpacity style={styles.navigationButton} onPress={props.BackPage}>
+        <Pressable style={styles.navigationButton} onPress={props.BackPage}>
           <Ionicons name="arrow-back" size={32} color="white" />
-        </TouchableOpacity>
+        </Pressable>
         <View style={{ flex: 8 }}>
           <Text style={styles.textTitle}>เพิ่มหมวดหมู่</Text>
         </View>
-        <TouchableOpacity style={styles.navigationButton} onPress={addCategory}>
+        <Pressable style={styles.navigationButton} onPress={addCategory}>
           <Ionicons name="checkmark" size={32} color="white" />
-        </TouchableOpacity>
+        </Pressable>
       </View>
         <View style={styles.textBox}>
+          <View style={{flexDirection:'row'}}>
             <Text style={styles.text}>ชื่อหมวดหมู่</Text>
+          </View>
           <TextInput style={styles.inputLeft}
             value={newCategory}
             onChangeText={text => setNewCategory(text)} />
         </View>
         <View style={styles.textBox}>
+          <View style={{flexDirection:'row'}}>
             <Text style={styles.text}>ประเภท</Text>
+          </View>
           <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
             placeholderStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}
             selectedTextStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}

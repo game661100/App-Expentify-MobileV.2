@@ -11,6 +11,8 @@ export default function HomeScreen() {
 
   const [page, setPage] = useState(0);
   const [date, setDate] = useState();
+  const [editIndex, setEditIndex] = useState();
+  const [isEdit, setIsEdit] = useState(false);
 
   const BackPage = () => {
     setPage(page - 1);
@@ -30,16 +32,16 @@ export default function HomeScreen() {
       );
     else if (page == 1)
       return (
-        <ExpentifyNote date={date} onSetPageFunction={setPage} BackPage={BackPage} />
-      );
+        <ExpentifyNote date={date} onSetPageFunction={setPage} BackPage={BackPage} setEditIndex={setEditIndex} setIsEdit={setIsEdit}/>
+    );
     else if (page == 2)
       return (
-        <Form date={date} onSetPageFunction={setPage} BackPage={BackPage} />
-      );
+        <Form date={date} onSetPageFunction={setPage} BackPage={BackPage} isEdit={isEdit} setIsEdit={setIsEdit} editIndex={editIndex}/>
+    );
     else if (page == 3)
       return (
         <Category onSetPageFunction={setPage} BackPage={BackPage} />
-      );
+    );
     else return null;
   }
 
