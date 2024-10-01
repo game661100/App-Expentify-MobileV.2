@@ -76,7 +76,7 @@ const CustomCalendar = (props) => {
 
   return (
     <>
-    <View style={{borderWidth:2,borderColor:"#fff"}}>
+    <View>
       <StyledCalendar
         onDayPress={onDayPress}
         markingType={'custom'}
