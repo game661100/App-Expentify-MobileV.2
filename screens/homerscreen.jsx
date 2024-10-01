@@ -46,6 +46,7 @@ export default function HomeScreen() {
   }
 
   const HomePageHandler = () => {
+    setIsEdit(false);
     setPage(0);
   }
 

@@ -40,13 +40,17 @@ const Form = (props) => {
     if (!selecetedCategory.trim() || !menu.trim() || !money.trim()) {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;}
+    if(money<=0){
+      alert('กรุณากรอกข้อมูลจำนวนเงินเป็นจำนวนเต็มบวก');
+      return;
+    }
     try {
       const existingData = await AsyncStorage.getItem('expenseData');
       const newItem = {
         category: selecetedCategory,
         category_type: selecetedType,
         menu: menu,
-        money: money,
+        money: parseFloat(money).toFixed(2),
         detail: detail,
         date: props.date
       };
@@ -170,11 +174,12 @@ const Form = (props) => {
           </View>
           <TextInput style={styles.inputRight}
             value={money}
+            keyboardType={"numeric"}
             onChangeText={text => setMoney(text)} />
         </View>
         <View style={styles.textBox}>
           <View style={{flexDirection:'row'}}>
-            <Text style={styles.textWithButton}>รายละเอียด</Text>
+            <Text style={styles.textWithButton}>รายละเอียด(ตัวเลือก)</Text>
           </View>
           <TextInput style={styles.inputLeft} multiline
             value={detail}
