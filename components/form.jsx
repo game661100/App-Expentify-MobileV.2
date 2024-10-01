@@ -8,11 +8,16 @@ import styles from '../styles/styles';
 const Form = (props) => {
   const [selecetedCategory, setSelecetedCategory] = useState('');
   const [categoryIndex, setCategoryIndex] = useState('');
-  const [selecetedType, setSelecetedType] = useState('');
   const [menu, setMenu] = useState('');
   const [money, setMoney] = useState('');
   const [detail, setDetail] = useState('');
   const [category, setCategory] = useState([]);
+  const [selecetedCategoryType, setSelecetedCategoryType] = useState('');
+
+  const categoryType = [
+    { type: 'รายรับ'},
+    { type: 'รายจ่าย'},
+  ];
 
   const addCategoryPage = () => {
     props.onSetPageFunction(3);
@@ -31,7 +36,8 @@ const Form = (props) => {
         ...item, 
         index: index,
       }));
-      setCategory(datasArrayIndex);
+      const filteredData = datasArrayIndex.filter((item) => item.type === selecetedCategoryType)
+      setCategory(filteredData);
     } catch (e) {
       console.log("Failed to fetch categories", e);
     }
@@ -53,7 +59,7 @@ const Form = (props) => {
       const existingData = await AsyncStorage.getItem('expenseData');
       const newItem = {
         category: selecetedCategory,
-        category_type: selecetedType,
+        category_type: selecetedCategoryType,
         menu: menu,
         money: parseFloat(money).toFixed(2),
         detail: detail,
@@ -80,8 +86,9 @@ const Form = (props) => {
       const datasArray = JSON.parse(storedDatas) || [];
       const filteredData = datasArray[props.editIndex];
       if (filteredData) {
+        setSelecetedCategoryType(filteredData.category_type);
+        getCategories();
         setSelecetedCategory(filteredData.category);
-        setSelecetedType(filteredData.category_type);
         setMenu(filteredData.menu);
         setMoney(filteredData.money);
         setDetail(filteredData.detail);
@@ -158,6 +165,9 @@ const Form = (props) => {
 
   useEffect(() => {
     getCategories();
+  }, [selecetedCategoryType]);
+
+  useEffect(() => {
     getDatas();
   }, []);
 
@@ -177,22 +187,41 @@ const Form = (props) => {
         </Pressable>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.textBox}>
+          <View style={{flexDirection:'row'}}>
+            <Text style={styles.textWithButton}>ประเภท</Text>
+          </View>
+          <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
+            placeholderStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
+            selectedTextStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
+            containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
+            itemContainerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
+            itemTextStyle={{ textAlign: 'left', paddingHorizontal: 4 }}
+            placeholder='เลือกหมวดหมู่'
+            data={categoryType}
+            value={selecetedCategoryType}
+            labelField="type"
+            valueField="type"
+            iconColor='white'
+            onChange={item => { setSelecetedCategoryType(item.type); setSelecetedCategory('');}} />
+          </View>
         <View style={styles.textBox}>
           <View style={{flexDirection:'row'}}>
             <Text style={styles.textWithButton}>หมวดหมู่</Text>
           </View>
           <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
-            placeholderStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}
-            selectedTextStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}
+            placeholderStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
+            selectedTextStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
             itemContainerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
-            itemTextStyle={{ textAlign: 'right', paddingHorizontal: 4 }}
+            itemTextStyle={{ textAlign: 'left', paddingHorizontal: 4 }}
             placeholder='เลือกหมวดหมู่'
             data={category}
             value={selecetedCategory}
             labelField="name"
             valueField="name"
-            onChange={item => { setSelecetedCategory(item.name); setSelecetedType(item.type); setCategoryIndex(item.index); }} />
+            iconColor='white'
+            onChange={item => { setSelecetedCategory(item.name); setCategoryIndex(item.index); }} />
             <View style={{flex:1,flexDirection:'row'}}>
               <View style={{flex:1}}>
                 {selecetedCategory !== '' ? (
@@ -221,7 +250,7 @@ const Form = (props) => {
           <View style={{flexDirection:'row'}}>
             <Text style={styles.textWithButton}>จำนวนเงิน</Text>
           </View>
-          <TextInput style={styles.inputRight}
+          <TextInput style={styles.inputLeft}
             value={money}
             keyboardType={"numeric"}
             onChangeText={text => setMoney(text)} />

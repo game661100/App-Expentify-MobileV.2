@@ -56,16 +56,17 @@ const Category = (props) => {
             <Text style={styles.textWithButton}>ประเภท</Text>
           </View>
           <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
-            placeholderStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}
-            selectedTextStyle={{ paddingVertical: 8, fontSize: 16, color: '#fff', textAlign: 'right', textAlignVertical: 'center' }}
+            placeholderStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
+            selectedTextStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
             itemContainerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
-            itemTextStyle={{ textAlign: 'right', paddingHorizontal: 4 }}
+            itemTextStyle={{ textAlign: 'left', paddingHorizontal: 4 }}
             placeholder='เลือกหมวดหมู่'
             data={categoryType}
             value={selecetedCategoryType}
             labelField="type"
             valueField="type"
+            iconColor='white'
             onChange={item => { setSelecetedCategoryType(item.type); }} />
         </View>
     </>
