@@ -7,6 +7,7 @@ import styles from '../styles/styles';
 
 const Form = (props) => {
   const [selecetedCategory, setSelecetedCategory] = useState('');
+  const [categoryIndex, setCategoryIndex] = useState('');
   const [selecetedType, setSelecetedType] = useState('');
   const [menu, setMenu] = useState('');
   const [money, setMoney] = useState('');
@@ -26,7 +27,11 @@ const Form = (props) => {
     try {
       const storedCategories = await AsyncStorage.getItem('categories');
       const categoriesArray = JSON.parse(storedCategories) || [];
-      setCategory(categoriesArray);
+      const datasArrayIndex = categoriesArray.map((item, index) => ({ 
+        ...item, 
+        index: index,
+      }));
+      setCategory(datasArrayIndex);
     } catch (e) {
       console.log("Failed to fetch categories", e);
     }
@@ -98,6 +103,19 @@ const Form = (props) => {
     }
   };
 
+  const removeCategory = async () => {
+    try {
+      const storedDatas = await AsyncStorage.getItem('categories');
+      const datasArray = JSON.parse(storedDatas) || [];
+      const updatedData = datasArray.filter((_, index) => index !== categoryIndex);
+      await AsyncStorage.setItem('categories', JSON.stringify(updatedData));
+      setSelecetedCategory('');
+      getCategories();
+    } catch (e) {
+      console.error("Failed to remove data", e);
+    }
+  };
+
   const confirmDelete = (indexToRemove) => {
     Alert.alert(
       "ยืนยันการลบ",
@@ -111,6 +129,26 @@ const Form = (props) => {
         {
           text: "ลบ",
           onPress: () => removeData(indexToRemove),
+          style: "destructive"
+        }
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const confirmDeleteCategory = () => {
+    Alert.alert(
+      "ยืนยันการลบ",
+      "คุณต้องการลบหมวดหมู่นี้หรือไม่?",
+      [
+        {
+          text: "ยกเลิก",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "ลบ",
+          onPress: () => removeCategory(),
           style: "destructive"
         }
       ],
@@ -154,10 +192,21 @@ const Form = (props) => {
             value={selecetedCategory}
             labelField="name"
             valueField="name"
-            onChange={item => { setSelecetedCategory(item.name); setSelecetedType(item.type) }} />
-          <Pressable style={{backgroundColor: '#6e47b2',alignSelf:'flex-end',padding:10,borderRadius:50,marginTop:5,}} onPress={addCategoryPage}>
-            <Ionicons name="add" size={18} color="white" />
-          </Pressable>
+            onChange={item => { setSelecetedCategory(item.name); setSelecetedType(item.type); setCategoryIndex(item.index); }} />
+            <View style={{flex:1,flexDirection:'row'}}>
+              <View style={{flex:1}}>
+                {selecetedCategory !== '' ? (
+                    <Pressable style={{backgroundColor: '#B20000',alignSelf:'flex-start',padding:10,borderRadius:50,marginTop:5,}} onPress={confirmDeleteCategory}>
+                    <Ionicons name="trash-bin" size={18} color="white" />
+                    </Pressable>
+                  ): null}
+              </View>
+              <View style={{flex:1}}>
+                <Pressable style={{backgroundColor: '#6e47b2',alignSelf:'flex-end',padding:10,borderRadius:50,marginTop:5,}} onPress={addCategoryPage}>
+                <Ionicons name="add" size={18} color="white" />
+                </Pressable>
+              </View>
+            </View>
         </View>
 
         <View style={styles.textBox}>
