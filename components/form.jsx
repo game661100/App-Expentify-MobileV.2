@@ -191,7 +191,7 @@ const Form = (props) => {
           <View style={{flexDirection:'row'}}>
             <Text style={styles.textWithButton}>ประเภท</Text>
           </View>
-          <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
+          <Dropdown style={{paddingVertical:2, marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
             placeholderStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             selectedTextStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
@@ -209,7 +209,7 @@ const Form = (props) => {
           <View style={{flexDirection:'row'}}>
             <Text style={styles.textWithButton}>หมวดหมู่</Text>
           </View>
-          <Dropdown style={{ marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
+          <Dropdown style={{paddingVertical:2, marginTop: 5, backgroundColor: '#656466', borderRadius: 10 }}
             placeholderStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             selectedTextStyle={{ padding: 8, fontSize: 16, color: '#fff', textAlign: 'left', textAlignVertical: 'center' }}
             containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
