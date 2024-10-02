@@ -48,7 +48,7 @@ const Form = (props) => {
   };
 
   const saveData = async () => {
-    if (!selecetedCategory.trim() || !menu.trim() || !money.trim()) {
+    if (selecetedCategory === '' || menu === '' || money === '') {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
       return;}
     if(money<=0){
@@ -197,7 +197,7 @@ const Form = (props) => {
             containerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
             itemContainerStyle={{ backgroundColor: '#656466', borderRadius: 10 }}
             itemTextStyle={{ textAlign: 'left', paddingHorizontal: 4 }}
-            placeholder='เลือกหมวดหมู่'
+            placeholder='เลือกประเภท'
             data={categoryType}
             value={selecetedCategoryType}
             labelField="type"

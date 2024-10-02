@@ -14,7 +14,7 @@ const Category = (props) => {
   const [selecetedCategoryType, setSelecetedCategoryType] = useState('');
 
   const addCategory = async () => {
-    if (!newCategory.trim() || !selecetedCategoryType.trim()) {
+    if (newCategory === '' || selecetedCategoryType === '') {
         alert('กรุณากรอกข้อมูลให้ครบถ้วน');
         return;
     }

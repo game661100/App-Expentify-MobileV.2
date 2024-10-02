@@ -32,11 +32,17 @@ export default function HomeScreen() {
       );
     else if (page == 1)
       return (
-        <ExpentifyNote date={date} onSetPageFunction={setPage} BackPage={BackPage} setEditIndex={setEditIndex} setIsEdit={setIsEdit}/>
-    );
+        <ExpentifyNote date={date} 
+        onSetPageFunction={setPage} 
+        BackPage={BackPage} 
+        setEditIndex={setEditIndex} 
+        setIsEdit={setIsEdit}/>);
     else if (page == 2)
       return (
-        <Form date={date} onSetPageFunction={setPage} BackPage={BackPage} isEdit={isEdit} setIsEdit={setIsEdit} editIndex={editIndex}/>
+        <Form date={date} onSetPageFunction={setPage} 
+        BackPage={BackPage} 
+        isEdit={isEdit} 
+        setIsEdit={setIsEdit} editIndex={editIndex}/>
     );
     else if (page == 3)
       return (
